@@ -9,6 +9,7 @@ charset-normalizer==3.4.1
 click==8.1.8
 colorama==0.4.6
 cookiecutter==2.6.0
+dj-database-url==3.0.1
 Django==5.2.5
 django-environ==0.12.0
 django-filter==25.1
@@ -26,6 +27,7 @@ MarkupSafe==3.0.2
 mdurl==0.1.2
 packaging==25.0
 pillow==11.3.0
+psycopg2-binary==2.9.11
 Pygments==2.19.1
 PyJWT==2.9.0
 python-dateutil==2.9.0.post0

@@ -1,0 +1,24 @@
+quiz_platform/         # Django loyihaning asosiy papkasi
+├── manage.py          # Django CLI script
+├── quiz_platform/     # Django project settings
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+├── users/             # User (o'qituvchi/ta'labalar) app
+│   ├── __init__.py
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── urls.py
+│   └── admin.py
+├── quizzes/           # Quiz va savollar app
+│   ├── __init__.py
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── urls.py
+│   └── admin.py
+├── requirements.txt   # Python kutubxonalar
+└── db.sqlite3         # Default SQLite database (yoki boshqa DB)

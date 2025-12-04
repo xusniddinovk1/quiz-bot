@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ quiz.title }} - Quiz</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background: #039E51;
+            color: white;
+            padding: 15px;
+            font-size: 22px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #039E51;
+            margin-bottom: 20px;
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 10px;
+            border-left: 6px solid #039E51;
+        }
+
+        .question-block p {
+            font-weight: 500;
+        }
+
+        .form-check-label {
+            margin-left: 8px;
+        }
+
+        .btn-primary {
+            background: #039E51 !important;
+            border-color: #039E51 !important;
+            width: 100%;
+            padding: 12px 0;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .btn-primary:hover {
+            background: #037f40 !important;
+            border-color: #037f40 !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    {{ quiz.title }} - Quiz
+</div>
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div class="question-block">
+                <p>{{ forloop.counter }}. {{ question.question_text }}</p>
+                {% for option in question.options.all %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                               name="question_{{ question.id }}"
+                               value="{{ option.id }}"
+                               id="option_{{ option.id }}">
+                        <label class="form-check-label" for="option_{{ option.id }}">
+                            {{ option.option_text }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Javoblarni saqlash</button>
+    </form>
+</div>
+
+</body>
+</html>

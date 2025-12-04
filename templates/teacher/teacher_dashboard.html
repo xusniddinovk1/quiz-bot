@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>O‘qituvchi Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f3f3f3; margin:0; padding:0; }
+        .navbar { background: #039E51; padding: 15px; color: white; font-size: 22px; }
+        .container { width: 90%; margin: 20px auto; }
+        h2 { color: #039E51; }
+        .actions { display: flex; gap: 15px; margin-bottom: 20px; }
+        .btn { padding: 12px 20px; background: #039E51; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; }
+        .quiz-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 15px; border-left: 8px solid #039E51; }
+        .quiz-title { font-size: 20px; font-weight: bold; }
+        .quiz-meta { margin-top: 8px; color: #555; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    O‘qituvchi Dashboard
+    <a href="{% url 'logout' %}" style="float: right; color: white; text-decoration: none; font-weight: bold;">Chiqish</a>
+</div>
+
+<div class="container">
+    <h2>Tezkor Amallar</h2>
+    <div class="actions">
+        <a href="{% url 'quiz_create' %}" class="btn">Quiz Yaratish</a>
+        <a href="{% url 'question_create' %}" class="btn">Savol Qo‘shish</a>
+    </div>
+
+    <h2>Mavjud Quizlar</h2>
+
+    {% for quiz in quizzes %}
+    <div class="quiz-card">
+        <div class="quiz-title">{{ quiz.title }}</div>
+        <div class="quiz-meta">
+            Fan: {{ quiz.subject.name }} <br>
+            Savollar soni: {{ quiz.questions.count }} ta <br>
+            Boshlanish vaqti: {{ quiz.start_time|date:"Y-m-d H:i" }} <br>
+            Tugash vaqti: {{ quiz.end_time|date:"Y-m-d H:i" }}
+        </div>
+    </div>
+    {% empty %}
+    <p>Hali quizlar yaratilmadi.</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>

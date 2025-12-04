@@ -1,0 +1,89 @@
+
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Talaba Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background: #039E51;
+            padding: 15px;
+            color: white;
+            font-size: 22px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        h2 {
+            color: #039E51;
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+            border-left: 8px solid #039E51;
+        }
+
+        .quiz-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .quiz-meta {
+            margin-top: 8px;
+            color: #555;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            background: #039E51;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 12px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    Talaba Dashboard
+</div>
+
+{% for quiz in quizzes %}
+    <div class="quiz-card">
+        <div class="quiz-title">{{ quiz.title }}</div>
+        <div class="quiz-meta">
+            Fan: {{ quiz.subject.name }} <br>
+            Savollar soni: {{ quiz.questions.count }} ta <br>
+            O‘qituvchi: {{ quiz.teacher.username }}
+        </div>
+
+        {% if quiz.id in completed_quiz_ids %}
+            <span class="btn" style="background: gray; cursor: not-allowed;">Allaqachon ishlangan</span>
+        {% else %}
+            <a href="{% url 'student_quiz' quiz.id %}" class="btn">Quizni boshlash</a>
+        {% endif %}
+    </div>
+{% endfor %}
+
+
+
+</body>
+</html>
